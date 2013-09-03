@@ -22,6 +22,7 @@ enum {
   opt_CHI2,
   opt_HELL,
   opt_JS,
+  opt_HISTINT,
 
   opt_KL2,
   opt_KL1,
@@ -38,6 +39,7 @@ vlmxOption  options [] = {
 {"chi2",         0,   opt_CHI2          },
 {"hell",         0,   opt_HELL          },
 {"js",           0,   opt_JS            },
+{"histint",      0,   opt_HISTINT       },
 
 {"kl2",          0,   opt_KL2           },
 {"kl1",          0,   opt_KL1           },
@@ -111,6 +113,7 @@ mexFunction(int nout, mxArray *out[],
       case opt_CHI2  : comparisonType = VlDistanceChi2 ; break ;
       case opt_HELL  : comparisonType = VlDistanceHellinger ; break ;
       case opt_JS    : comparisonType = VlDistanceJS ; break ;
+      case opt_HISTINT : comparisonType = VlDistanceHistInt; break ;
       case opt_KL2   : comparisonType = VlKernelL2 ; break ;
       case opt_KL1   : comparisonType = VlKernelL1 ; break ;
       case opt_KCHI2 : comparisonType = VlKernelChi2 ; break ;
