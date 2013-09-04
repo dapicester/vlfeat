@@ -662,6 +662,7 @@ typedef double (*VlDoubleVector3ComparisonFunction)(vl_size dimension, double co
 enum _VlVectorComparisonType {
   VlDistanceL1,        /**< l1 distance (squared intersection metric) */
   VlDistanceL2,        /**< squared l2 distance */
+  VlDistanceHistInt,   /**< histogram intersection distance */
   VlDistanceChi2,      /**< squared Chi2 distance */
   VlDistanceHellinger, /**< squared Hellinger's distance */
   VlDistanceJS,        /**< squared Jensen-Shannon distance */
@@ -687,6 +688,7 @@ vl_get_vector_comparison_type_name (int type)
   switch (type) {
     case VlDistanceL1   : return "l1" ;
     case VlDistanceL2   : return "l2" ;
+    case VlDistanceHistInt  : return "histint" ;
     case VlDistanceChi2 : return "chi2" ;
     case VlDistanceMahalanobis  : return "mahalanobis" ;
     case VlKernelL1     : return "kl1" ;

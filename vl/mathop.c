@@ -47,6 +47,12 @@ the terms of the BSD license (see the COPYING file).
  <td>Squared Euclidean disance</td>
  </tr>
  <tr>
+ <td>-</td>
+ <td>::VlDistanceHistInt</td>
+ <td>@f$\sum_{i=1}^d \min\{x_i, y_i\}@f$</td>
+ <td>Histogram Intersection distance</td>
+ </tr>
+ <tr>
  <td>@f$ \chi^2 @f$</td>
  <td>::VlDistanceChi2</td>
  <td>@f$\sum_{i=1}^d \frac{(x_i - y_i)^2}{x_i + y_i}@f$</td>
@@ -227,6 +233,20 @@ VL_XCAT(_vl_distance_l1_, SFX)
 }
 
 VL_EXPORT T
+VL_XCAT(_vl_distance_histint_, SFX)
+(vl_size dimension, T const * X, T const * Y)
+{
+  T const * X_end = X + dimension ;
+  T acc = 0.0 ;
+  while (X < X_end) {
+    T a = *X++ ;
+    T b = *Y++ ;
+    acc += a + b - VL_XCAT(vl_abs_, SFX) (a - b) ;
+  }
+  return acc / ((T)2) ;
+}
+
+VL_EXPORT T
 VL_XCAT(_vl_distance_chi2_, SFX)
 (vl_size dimension, T const * X, T const * Y)
 {
@@ -383,6 +403,7 @@ VL_XCAT(vl_get_vector_comparison_function_, SFX)(VlVectorComparisonType type)
   switch (type) {
     case VlDistanceL2        : function = VL_XCAT(_vl_distance_l2_,             SFX) ; break ;
     case VlDistanceL1        : function = VL_XCAT(_vl_distance_l1_,             SFX) ; break ;
+    case VlDistanceHistInt   : function = VL_XCAT(_vl_distance_histint_,        SFX) ; break ;
     case VlDistanceChi2      : function = VL_XCAT(_vl_distance_chi2_,           SFX) ; break ;
     case VlDistanceHellinger : function = VL_XCAT(_vl_distance_hellinger_,      SFX) ; break ;
     case VlDistanceJS        : function = VL_XCAT(_vl_distance_js_,             SFX) ; break ;
