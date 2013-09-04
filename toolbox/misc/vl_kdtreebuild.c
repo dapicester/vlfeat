@@ -135,6 +135,8 @@ mexFunction(int nout, mxArray *out[],
           distance = VlDistanceL2 ;
         } else if (vlmxCompareStringsI("l1", buffer) == 0) {
           distance = VlDistanceL1 ;
+        } else if (vlmxCompareStringsI("histint", buffer) == 0) {
+          distance = VlDistanceHistInt ;
         } else {
           vlmxError (vlmxErrInvalidArgument,
                     "Invalid value %s for DISTANCE", buffer) ;
@@ -163,6 +165,8 @@ mexFunction(int nout, mxArray *out[],
     mexPrintf("vl_kdforestbuild: threshold selection method: %s\n", str) ;
     mexPrintf("vl_kdforestbuild: number of trees: %d\n",
               vl_kdforest_get_num_trees(forest)) ;
+    mexPrintf("vl_kdforestbuild: distance: %s\n",
+            vl_get_vector_comparison_type_name(distance)) ;
   }
 
   /* -----------------------------------------------------------------

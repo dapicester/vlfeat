@@ -110,6 +110,9 @@ new_array_from_kdforest (VlKDForest const * forest)
       case VlDistanceL2:
         mxSetField (forest_array, 0, "distance", mxCreateString("l2")) ;
         break;
+      case VlDistanceHistInt:
+        mxSetField (forest_array, 0, "distance", mxCreateString("histint")) ;
+        break;
       default:
         abort();
   }
@@ -237,9 +240,11 @@ new_kdforest_from_array (mxArray const * forest_array, mxArray const * data_arra
       distance = VlDistanceL1 ;
     } else if (vlmxCompareToStringI(distance_array, "l2") == 0) {
       distance = VlDistanceL2 ;
+    } else if (vlmxCompareToStringI(distance_array, "histint") == 0) {
+      distance = VlDistanceHistInt ;
     } else {
       vlmxError(vlmxErrInconsistentData,
-                "FOREST.DISTANCE must be either 'l1' or 'l2'.") ;
+                "FOREST.DISTANCE must be either 'l1' or 'l2' or 'histint'.") ;
     }
   } else {
     vlmxError(vlmxErrInconsistentData,
