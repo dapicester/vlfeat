@@ -29,6 +29,7 @@ enum {
   opt_L0,
   opt_CHI2,
   opt_HELL,
+  opt_HISTINT,
 
   opt_KL2,
   opt_KL1,
@@ -45,6 +46,7 @@ vlmxOption  options [] = {
   {"l0",           0,   opt_L0            },
   {"chi2",         0,   opt_CHI2          },
   {"hell",         0,   opt_HELL          },
+  {"histint",      0,   opt_HISTINT       },
 
   {"kl2",          0,   opt_KL2           },
   {"kl1",          0,   opt_KL1           },
@@ -231,6 +233,7 @@ vlmxOption  options [] = {
 #define F_HELL_UINT8(x,y)  { acc += x + y - 2 * vl_fast_sqrt_ui32 (x * y) ; }
 #define F_HELL_INT8(x,y)   { acc += x + y - 2 * vl_fast_sqrt_ui32 (x * y) ; }
 #define F_HELL(AC,x,y) F_HELL_ ## AC (x,y)
+#define F_HISTINT(AC,x,y)  { acc += MIN(x,y) ; }
 
 #define  F_KL2(AC,x,y)  { acc += (x*y) ; }
 #define  F_KL1(AC,x,y)  { acc += MIN(x,y) ; }
@@ -259,6 +262,7 @@ DEF_CLASS (L1,    F_L1   )
 DEF_CLASS (L0,    F_L0   )
 DEF_CLASS (CHI2,  F_CHI2 )
 DEF_CLASS (HELL,  F_HELL )
+DEF_CLASS (HISTINT, F_HISTINT)
 
 DEF_CLASS (KL2,   F_KL2  )
 DEF_CLASS (KL1,   F_KL1  )
@@ -330,6 +334,7 @@ mexFunction(int nout, mxArray *out[],
     case opt_L0 :
     case opt_CHI2 :
     case opt_HELL :
+    case opt_HISTINT:
 
     case opt_KL2 :
     case opt_KL1 :
@@ -406,6 +411,7 @@ mexFunction(int nout, mxArray *out[],
     DISPATCH_NORM(L0   ) ;
     DISPATCH_NORM(CHI2 ) ;
     DISPATCH_NORM(HELL ) ;
+    DISPATCH_NORM(HISTINT) ;
 
     DISPATCH_NORM(KL2  ) ;
     DISPATCH_NORM(KL1  ) ;
