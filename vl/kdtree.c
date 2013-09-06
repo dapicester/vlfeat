@@ -320,7 +320,7 @@ vl_kdtree_build_recursively
  ** @param dataType type of data (::VL_TYPE_FLOAT or ::VL_TYPE_DOUBLE)
  ** @param dimension data dimensionality.
  ** @param numTrees number of trees in the forest.
- ** @param distance type of distance norm (::VlDistanceL1 or ::VlDistanceL2).
+ ** @param distance type of distance norm (::VlDistanceL1 or ::VlDistanceL2 or :VlDistanceHistInt).
  ** @return new KDForest.
  **/
 
