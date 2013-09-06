@@ -241,7 +241,8 @@ VL_XCAT(_vl_distance_histint_, SFX)
   while (X < X_end) {
     T a = *X++ ;
     T b = *Y++ ;
-    acc += a + b - VL_XCAT(vl_abs_, SFX) (a - b) ;
+    /* inverse distance, so invert sign */
+    acc -= a + b - VL_XCAT(vl_abs_, SFX) (a - b) ;
   }
   return acc / ((T)2) ;
 }

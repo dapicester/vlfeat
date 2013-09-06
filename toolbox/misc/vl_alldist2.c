@@ -233,7 +233,7 @@ vlmxOption  options [] = {
 #define F_HELL_UINT8(x,y)  { acc += x + y - 2 * vl_fast_sqrt_ui32 (x * y) ; }
 #define F_HELL_INT8(x,y)   { acc += x + y - 2 * vl_fast_sqrt_ui32 (x * y) ; }
 #define F_HELL(AC,x,y) F_HELL_ ## AC (x,y)
-#define F_HISTINT(AC,x,y)  { acc += MIN(x,y) ; }
+#define F_HISTINT(AC,x,y)  { acc -= MIN(x,y) ; }
 
 #define  F_KL2(AC,x,y)  { acc += (x*y) ; }
 #define  F_KL1(AC,x,y)  { acc += MIN(x,y) ; }
